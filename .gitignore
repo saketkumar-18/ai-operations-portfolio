@@ -10,3 +10,11 @@ scripts/cleanup.cjs
 scripts/kill-stale.js
 
 .vercel
+
+# local deploy helpers (not part of the app)
+scripts/cleanup.cjs
+scripts/kill-stale.js
+scripts/deploy-status.mjs
+scripts/list-deploys.mjs
+scripts/vercel-sso-check.mjs
+scripts/vercel-sso-off.mjs
