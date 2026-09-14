@@ -1,0 +1,10 @@
+node_modules/
+.next/
+out/
+tsconfig.tsbuildinfo
+*.log
+.DS_Store
+# local verification artifacts
+shots/
+scripts/cleanup.cjs
+scripts/kill-stale.js
