@@ -12,11 +12,14 @@ World → Operations Compound → Main Facility → Rooms → Interactive Object
 
 ## Experience
 
-| Layer | What it is |
+The full battle-royale insert, from boot to boots-on-the-ground:
+
+| Phase | What happens |
 |---|---|
-| **Boot sequence** | `INITIALIZING SAKET.OS` → SYSTEM READY → ENTER THE SYSTEM |
-| **The world** | 900×900m procedural terrain, dusk sky, fog, dust particles, distant mountains, road corridor, gated compound |
-| **Camera** | Scroll-driven cinematic dolly through 6 locations; minimap/assistant/number-key jumps fly the camera there |
+| **Boot** | `INITIALIZING SAKET.OS` → SYSTEM READY → **DEPLOY TO WORLD** |
+| **Plane** | Original cargo plane flies a 26s line across the map; camera trails it; **[ SPACE ] — JUMP** (auto-jump at path end so nobody is trapped) |
+| **Drop** | Freefall at 62 m/s with steering toward the compound; parachute auto-deploys at 70 m; altitude meter on the right edge |
+| **Ground** | `OPERATOR SK.18 LANDED — SA SYSTEMS ONLINE`; scroll drives the cinematic camera through the world |
 | **LOCATION 01 — COMMAND CENTER** | About: operator profile holo-table, tactical globe (Delhi + Guwahati), system displays |
 | **LOCATION 02 — AI TRAINING GROUND** | Skills as 4 interactive stations: code terminal, training console, neural core, infrastructure tower |
 | **LOCATION 03 — MISSION ARCHIVE** | All 15 projects as supply crates. Hover → `MISSION DETECTED`, lid opens, click → full-screen dossier. Category filter dims non-matching crates |
@@ -25,7 +28,10 @@ World → Operations Compound → Main Facility → Rooms → Interactive Object
 | **LOCATION 06 — COMMUNICATION TOWER** | Contact: pulsing antenna tower, channels, resume download |
 | **S.A.K.E.T.** | In-world assistant — local intent retrieval over the real portfolio data ("take me to RepoLens" → `NAVIGATION TARGET LOCKED` → dossier). LLM-pluggable via `answerIntent()` |
 | **Recruiter Mode** | One click → fast professional 2D view (About/Skills/Projects/Education/Contact) |
+| **Battle HUD** | PUBG-style: sliding bearing-tape compass with heading readout, bottom-right minimap with flight line + safe-zone circle + plane icon, segmented health bar, kill feed, altitude meter |
 | **Audio** | Procedural wind + facility hum + radio blips (Web Audio). Muted by default, toggle in HUD |
+
+All battle-royale atmosphere, zero copyrighted material: the plane, map, livery and UI are original designs inspired by the genre, not copies of PUBG assets.
 
 ## Resilience & performance
 
