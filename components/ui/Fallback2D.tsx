@@ -249,9 +249,11 @@ export default function Fallback2D() {
                   </div>
                 )}
                 <div className="flex gap-3">
-                  <a className="btn-tac !px-4 !py-2 text-[10px]" href={p.github} target="_blank" rel="noopener noreferrer">
-                    ▣ GITHUB
-                  </a>
+                  {p.github && (
+                    <a className="btn-tac !px-4 !py-2 text-[10px]" href={p.github} target="_blank" rel="noopener noreferrer">
+                      ▣ GITHUB
+                    </a>
+                  )}
                   {p.demo && (
                     <a className="btn-tac ghost !px-4 !py-2 text-[10px]" href={p.demo} target="_blank" rel="noopener noreferrer">
                       ▶ LIVE DEMO

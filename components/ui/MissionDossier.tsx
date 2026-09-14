@@ -113,15 +113,21 @@ export default function MissionDossier() {
 
         {/* actions */}
         <div className="flex flex-wrap gap-3 border-t border-tac-paper/10 pt-6">
-          <a
-            className="btn-tac solid"
-            href={p.github}
-            target="_blank"
-            rel="noopener noreferrer"
-            onClick={() => toast("SOURCE REPOSITORY CONNECTED", "link")}
-          >
-            ▣ VIEW GITHUB
-          </a>
+          {p.github ? (
+            <a
+              className="btn-tac solid"
+              href={p.github}
+              target="_blank"
+              rel="noopener noreferrer"
+              onClick={() => toast("SOURCE REPOSITORY CONNECTED", "link")}
+            >
+              ▣ VIEW GITHUB
+            </a>
+          ) : (
+            <span className="btn-tac ghost pointer-events-none opacity-60" aria-hidden>
+              ▣ SOURCE PRIVATE
+            </span>
+          )}
           {p.demo && (
             <a
               className="btn-tac"
@@ -137,6 +143,11 @@ export default function MissionDossier() {
             ↩ RETURN TO WORLD
           </button>
         </div>
+        {p.note && (
+          <p className="font-mono-t text-[10px] tracking-[0.14em] text-tac-gray mt-4">
+            NOTE: {p.note.toUpperCase()}
+          </p>
+        )}
       </div>
     </div>
   );

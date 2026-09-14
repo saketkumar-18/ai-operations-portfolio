@@ -19,7 +19,8 @@ export interface Project {
   tech: string[];
   metrics?: string[];
   demo?: string;
-  github: string;
+  github?: string;
+  note?: string;
 }
 
 export const CATEGORY_META: Record<
@@ -56,7 +57,7 @@ export const projects: Project[] = [
       "Hallucination detection & mitigation for RAG — claim-level NLI checks whether each answer is supported by its retrieved context, then auto-corrects via re-retrieval. F1 = 0.887 on SQuAD-based eval.",
     tech: ["Python", "NLI", "RAG", "LLM Eval"],
     metrics: ["F1 = 0.887 (SQuAD-based eval)"],
-    demo: "https://faithguard.onrender.com",
+    demo: "https://faithguard.onrender.com/docs",
     github: "https://github.com/saketkumar-18/faithguard",
   },
   {
@@ -181,7 +182,7 @@ export const projects: Project[] = [
       "Privacy-first social discovery & real-time chat — no accounts: ephemeral JWT sessions, E2E-encrypted self-destructing rooms, on-device location coarsening, QR/invite pairing.",
     tech: ["React", "Node.js", "WebSockets"],
     demo: "https://persona-chat.vercel.app",
-    github: "https://github.com/saketkumar-18/persona",
+    note: "Source repository is private.",
   },
   {
     id: "lost-found-network",

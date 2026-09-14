@@ -144,17 +144,19 @@ export default function RecruiterMode() {
                       ◂ {m}
                     </span>
                   ))}
-                  <a
-                    className="font-mono-t text-[10px] tracking-[0.16em] text-tac-dim hover:text-tac-orange transition-colors ml-auto"
-                    href={p.github}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                  >
-                    GITHUB ↗
-                  </a>
+                  {p.github && (
+                    <a
+                      className="font-mono-t text-[10px] tracking-[0.16em] text-tac-dim hover:text-tac-orange transition-colors ml-auto"
+                      href={p.github}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                    >
+                      GITHUB ↗
+                    </a>
+                  )}
                   {p.demo && (
                     <a
-                      className="font-mono-t text-[10px] tracking-[0.16em] text-tac-dim hover:text-tac-orange transition-colors"
+                      className={`font-mono-t text-[10px] tracking-[0.16em] text-tac-dim hover:text-tac-orange transition-colors ${p.github ? "" : "ml-auto"}`}
                       href={p.demo}
                       target="_blank"
                       rel="noopener noreferrer"

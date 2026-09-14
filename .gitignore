@@ -8,3 +8,5 @@ tsconfig.tsbuildinfo
 shots/
 scripts/cleanup.cjs
 scripts/kill-stale.js
+
+.vercel
