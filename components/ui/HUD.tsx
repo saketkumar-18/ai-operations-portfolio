@@ -12,6 +12,7 @@ import { profile } from "../../data/profile";
 import MissionDossier from "./MissionDossier";
 import MissionDirectory from "./MissionDirectory";
 import AIConsole from "./AIConsole";
+import BattleHUD from "./BattleHUD";
 import AudioEngine from "../../lib/audio";
 export default function HUD() {
   const activeLocation = useWorld((s) => s.activeLocation);
@@ -50,28 +51,19 @@ export default function HUD() {
         </div>
       </div>
 
-      {/* bottom-left: location readout */}
-      <div className="fixed bottom-4 left-4 z-40 select-none pointer-events-none">
-        <div className="tac-panel px-4 py-2.5">
-          <div className="hud-label">LOCATION</div>
-          <div className="font-mono-t text-[13px] text-tac-orange tracking-[0.14em] mt-0.5">
-            {loc.no} · {loc.name}
-          </div>
-          <div className="hud-label mt-1 text-tac-green flex items-center gap-1.5">
-            <span className="inline-block w-1.5 h-1.5 rounded-full bg-tac-green" />
-            SYSTEM ONLINE
-          </div>
+      {/* location readout — above health bar, bottom-left */}
+      <div className="fixed bottom-24 left-4 z-30 select-none pointer-events-none">
+        <div className="font-mono-t text-[10px] tracking-[0.14em] text-tac-orange">
+          {loc.no} · {loc.name}
+        </div>
+        <div className="hud-label mt-0.5 text-tac-green flex items-center gap-1.5">
+          <span className="inline-block w-1.5 h-1.5 rounded-full bg-tac-green" />
+          SYSTEM ONLINE
         </div>
       </div>
 
-      {/* bottom-right: status + controls */}
-      <div className="fixed bottom-4 right-4 z-40 flex flex-col items-end gap-2">
-        <div className="tac-panel px-4 py-2 pointer-events-none">
-          <div className="hud-label text-right">OPERATOR STATUS</div>
-          <div className="hud-value text-tac-dim text-right mt-0.5">
-            SAKET KUMAR · {profile.statusShort}
-          </div>
-        </div>
+      {/* bottom-right (above minimap): status + controls */}
+      <div className="fixed bottom-[270px] right-4 z-40 flex flex-col items-end gap-2">
         <div className="flex gap-2">
           <button
             className="btn-tac ghost !px-3 !py-2 text-[10px]"
@@ -102,8 +94,8 @@ export default function HUD() {
         </div>
       </div>
 
-      {/* toasts — center-bottom */}
-      <div className="fixed bottom-24 left-1/2 -translate-x-1/2 z-50 flex flex-col items-center gap-2 pointer-events-none">
+      {/* toasts — center-bottom above health bar */}
+      <div className="fixed bottom-40 left-1/2 -translate-x-1/2 z-50 flex flex-col items-center gap-2 pointer-events-none">
         {toasts.map((t) => (
           <div
             key={t.id}
@@ -120,10 +112,11 @@ export default function HUD() {
         ))}
       </div>
 
-      {/* dossier + directory + assistant */}
+      {/* dossier + directory + assistant + battle HUD */}
       <MissionDossier />
       <MissionDirectory />
       <AIConsole />
+      <BattleHUD />
     </>
   );
 }

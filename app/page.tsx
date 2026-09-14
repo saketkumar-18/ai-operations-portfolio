@@ -44,19 +44,24 @@ export default function Experience() {
     [device]
   );
 
-  // boot → world transition
+  // boot → world transition: start on the plane (battle-royale insert)
   const entered = mode === "world" || mode === "recruiter";
 
   useEffect(() => {
-    if (started && mode === "boot") useWorld.getState().setMode("world");
+    if (started && mode === "boot") {
+      // default: deploy to world (plane). Recruiter mode was set directly in enter().
+      useWorld.getState().setMode("world");
+      useWorld.getState().setPhase("plane");
+      useWorld.getState().toast("CARGO PLANE INBOUND — SPACE / CLICK TO JUMP", "nav");
+    }
   }, [started, mode]);
 
-  // keyboard navigation: number keys jump locations
+  // keyboard navigation: number keys jump locations (ground phase only)
   useEffect(() => {
     const onKey = (e: KeyboardEvent) => {
       if (e.target instanceof HTMLInputElement) return;
       const n = parseInt(e.key, 10);
-      if (n >= 1 && n <= 6) {
+      if (n >= 1 && n <= 6 && useWorld.getState().phase === "ground") {
         const locs = ["command", "training", "archive", "research", "cloud", "comms"];
         useWorld.getState().goto(locs[n - 1] as never);
       }

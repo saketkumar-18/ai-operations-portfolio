@@ -10,6 +10,7 @@ import type { LocationId } from "../data/navigation";
 import type { Project } from "../data/projects";
 
 export type Mode = "boot" | "world" | "recruiter";
+export type Phase = "lobby" | "plane" | "drop" | "ground";
 export type ToastKind = "info" | "mission" | "nav" | "link";
 
 interface Toast {
@@ -20,6 +21,8 @@ interface Toast {
 
 interface WorldState {
   mode: Mode;
+  phase: Phase; // battle-royale flow: lobby → plane → drop → ground
+  altitude: number; // meters during freefall (0 = landed)
   started: boolean;
   activeLocation: LocationId;
   journey: number; // 0..1 scroll progress
@@ -32,9 +35,15 @@ interface WorldState {
   toasts: Toast[];
   lowSpec: boolean; // mobile / low-power detected
   webglOK: boolean | null; // null = unchecked
+  health: number; // operator health bar (100)
+  killFeed: { id: number; text: string }[]; // feed messages
 
   setMode: (m: Mode) => void;
+  setPhase: (p: Phase) => void;
+  setAltitude: (a: number) => void;
   setStarted: (s: boolean) => void;
+  setHealth: (h: number) => void;
+  killFeedPush: (text: string) => void;
   setActiveLocation: (id: LocationId, announce?: boolean) => void;
   setJourney: (j: number) => void;
   setTargetJourney: (j: number) => void;
@@ -54,6 +63,8 @@ let toastId = 0;
 
 export const useWorld = create<WorldState>((set, get) => ({
   mode: "boot",
+  phase: "lobby",
+  altitude: 0,
   started: false,
   activeLocation: "command",
   journey: 0,
@@ -66,8 +77,12 @@ export const useWorld = create<WorldState>((set, get) => ({
   toasts: [],
   lowSpec: false,
   webglOK: null,
+  health: 100,
+  killFeed: [],
 
   setMode: (m) => set({ mode: m }),
+  setPhase: (p) => set({ phase: p }),
+  setAltitude: (a) => set({ altitude: a }),
   setStarted: (s) => set({ started: s }),
   setActiveLocation: (id, announce) => {
     const loc = LOCATIONS.find((l) => l.id === id);
@@ -112,4 +127,12 @@ export const useWorld = create<WorldState>((set, get) => ({
   setShowAssistant: (b) => set({ showAssistant: b }),
   setLowSpec: (b) => set({ lowSpec: b }),
   setWebglOK: (b) => set({ webglOK: b }),
+  setHealth: (h) => set({ health: Math.max(0, Math.min(100, h)) }),
+  killFeedPush: (text: string) => {
+    const id = ++toastId;
+    set((s) => ({ killFeed: [...s.killFeed.slice(-3), { id, text }] }));
+    setTimeout(() => {
+      set((s) => ({ killFeed: s.killFeed.filter((k: { id: number }) => k.id !== id) }));
+    }, 4200);
+  },
 }));

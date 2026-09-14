@@ -91,8 +91,11 @@ export default function CameraController({ reduced }: { reduced: boolean }) {
   }, []);
 
   useFrame((state, dt) => {
-    const { targetJourney, setJourney, activeProject, setActiveLocation } =
+    const { targetJourney, setJourney, activeProject, setActiveLocation, phase } =
       useWorld.getState();
+
+    // plane & freefall own the camera
+    if (phase === "plane" || phase === "drop") return;
 
     // if dossier open, freeze camera
     if (activeProject) return;

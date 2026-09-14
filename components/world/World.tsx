@@ -12,6 +12,7 @@ import * as THREE from "three";
 import Environment from "./Environment";
 import CameraController from "../three/CameraController";
 import PerformanceManager from "../three/PerformanceManager";
+import PlaneDrop from "../three/PlaneDrop";
 import CommandCenter from "./locations/CommandCenter";
 import TrainingGround from "./locations/TrainingGround";
 import MissionArchive from "./locations/MissionArchive";
@@ -56,6 +57,7 @@ export default function World() {
       >
         <Suspense fallback={null}>
           <PerformanceManager />
+          <PlaneDrop />
           <CameraController reduced={reduced} />
           <Environment lowSpec={device.isLowSpec} />
           <CommandCenter />

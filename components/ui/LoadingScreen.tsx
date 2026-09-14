@@ -47,10 +47,11 @@ export default function LoadingScreen() {
     };
   }, []);
 
-  const enter = (explore: boolean) => {
+  const enter = (recruiter: boolean) => {
     timers.current.forEach((t) => window.clearTimeout(t));
     setStarted(true);
-    toast(explore ? "OPERATIONS OVERVIEW OPEN" : "WORLD ENTRY CONFIRMED", "nav");
+    if (recruiter) useWorld.getState().setMode("recruiter");
+    else toast("DEPLOYMENT AUTHORIZED", "nav");
   };
 
   return (
@@ -98,14 +99,14 @@ export default function LoadingScreen() {
 
           <div className="flex flex-wrap gap-4">
             <button className="btn-tac solid" onClick={() => enter(false)}>
-              ENTER THE SYSTEM
+              DEPLOY TO WORLD
             </button>
             <button className="btn-tac ghost" onClick={() => enter(true)}>
-              EXPLORE OPERATIONS
+              RECRUITER MODE
             </button>
           </div>
           <p className="font-mono-t text-[10px] tracking-[0.2em] text-tac-gray/70 mt-6">
-            SCROLL DRIVES THE CAMERA · MINIMAP JUMPS BETWEEN SECTORS · RECRUITER MODE AVAILABLE
+            FLIGHT INBOUND · SPACE TO JUMP · SCROLL TO MOVE ON GROUND · MINIMAP NAVIGATES
           </p>
         </div>
       </div>

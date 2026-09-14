@@ -29,7 +29,7 @@ export default function MissionDirectory() {
     <>
       {/* trigger */}
       <button
-        className="fixed bottom-24 right-4 z-40 btn-tac !px-4 !py-2.5 text-[10px]"
+        className="fixed bottom-[270px] right-4 z-40 btn-tac !px-4 !py-2.5 text-[10px]"
         onClick={() => setOpen(!open)}
         aria-expanded={open}
         aria-label="Mission directory — browse all projects"
@@ -39,7 +39,7 @@ export default function MissionDirectory() {
 
       {open && (
         <div
-          className="fixed inset-x-4 bottom-32 md:inset-x-auto md:right-4 md:w-[560px] z-[70] tac-panel tac-panel-hi brackets p-5 max-h-[62vh] overflow-y-auto anim-rise"
+          className="fixed inset-x-4 bottom-[330px] md:inset-x-auto md:right-4 md:w-[560px] z-[70] tac-panel tac-panel-hi brackets p-5 max-h-[56vh] overflow-y-auto anim-rise"
           role="dialog"
           aria-label="Mission directory"
         >
